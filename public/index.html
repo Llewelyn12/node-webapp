@@ -7,228 +7,105 @@
 <title>First Page</title>
 <!--CSS-->
 <link rel="stylesheet" href="/jquery-ui/themes/base/jquery-ui.css">
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="/styles/style.min.css"/>
+
 
 <!--Javascript-->
 <script src="/jquery/jquery.min.js"></script>
 <script src="/jquery-ui/jquery-ui.min.js"></script>
 
+
+
 </head>
 <body>
-    <div id="tabs">
-        <ul>
-          <li><a href="#tabs-1">1-แบบฟอร์มลงทะเบียน</a></li>
-          <li><a href="#tabs-2">2-รายชื่อนิสิต(ALL)</a></li>
-          <li><a href="#tabs-3">3-ข้อมูลนิสิต</a></li>
-        </ul>
-        <div id="tabs-1">  
-            <form id="my-form">
-                <input type="text" id="txtStudentID" name="txtStudentID" placeholder="รหัสนิสิต" />
-                <br/>
-                <input type="text" id="txtName" name="txtName" placeholder="ชื่อ-นามสกุล" />
-                <br/>
-                <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
-                <br/>
-                <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
-                <br/>
-                <input type="button" id="btnSubmit" value="Submit"/>
-            </form>
- 
-        </div>
-        <div id="tabs-2">
-          <button class="ui-button ui-widget ui-corner-all" id="btnRequest">Load</button>
-          <div id="myDynamicTable"></div>
-        </div>
-        <div id="tabs-3">
-        
-        </div>
-    </div><!-- tabs-->
-</body>
-<script type="text/javascript">
-    $(document).ready(function () {
-       console.log("Onload");
-
-       $("#tabs").tabs({
-           activate: function(event, ui) {
-               var tabIndex = $("#tabs").tabs("option", "active");
-               //console.log(tabIndex);
-               if (tabIndex == 0) {
-                   console.log("tabs-1");
-               }else if(tabIndex == 1){
-                   console.log("tabs-2");
-               }else if(tabIndex == 2){
-                   console.log("tabs-3");
-               }
-           }
-       });
-
-       //btnRequest
-       $('#btnRequest').click( function(){
-         // url from where we want to get the data
-         $.ajax({
-           method: "GET",
-           url: "https://tools.ecpe.nu.ac.th/network/api/students",
-           dataType : 'json',
-           headers: { 
-             'Content-Type': 'application/json',
-             "Accepts": "application/json",
-             "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjU4ODM1MDI2LCJleHAiOjE2NTg4Mzg2MjYsIm5iZiI6MTY1ODgzNTAyNiwianRpIjoiRjBIMTlscklCYmFpZlhzUCIsInN1YiI6OCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.VAyywfhwPjrySo3HLjLXOjQ3CObEVs0lay2-WRDa-wU",
-           },
-           success: function(data){
-             console.log(data);
-             var tbName ="myDynamicTable";
-             addTable(data,tbName);
-
-             //alert("Done");
-           }
-         });
-       });
-    });
-</script>
-<script type="text/javascript">
-
-    var TableBackgroundMouseoverColor = "#b8663d";
-          function ChangeBackgroundColor(row) { row.style.backgroundColor = TableBackgroundMouseoverColor; }
-          function RestoreBackgroundColor(row,color_me) { row.style.backgroundColor = color_me; }
+  <h1 style="text-align: center;">You are Welcome 👋</h1>
   
-    function addTable(items,tb_name) {
-                    
-      console.log("addTable"+items.length);
-      var myTableDiv = document.getElementById(tb_name);
-  
-      var table = document.createElement('TABLE');
-      table.border = '1';
-      //table.setAttribute("class", "table table-striped");
-  
-      var tableHead = document.createElement('THEAD');
-      table.appendChild(tableHead);
-      
-      var trHead = document.createElement('TR');
-      trHead.setAttribute("style","background-color:#4e4cba;color: white;text-align: center;");
-      
-      tableHead.appendChild(trHead);
-      
-      var col1 = document.createElement('TD');
-      //col1.width = '25px';
-      col1.setAttribute("width","20px");
-      trHead.appendChild(col1);
-      col1.appendChild(document.createTextNode("No"));
-      
-      var col2 = document.createElement('TD');
-      trHead.appendChild(col2);
-      col2.appendChild(document.createTextNode("รหัสนิสิต"));
-      
-      var col3 = document.createElement('TD');
-      trHead.appendChild(col3);
-      col3.appendChild(document.createTextNode("ชื่อ-นามสกุล"));
+
+  <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">1-แบบฟอร์มลงทะเบียน</a></li>
+      <li><a href="#tabs-2">2-รายชื่อนิสิต(ALL)</a></li>
+      <li><a href="#tabs-3">3-ข้อมูลนิสิต</a></li>
+    </ul>
+    <div id="tabs-1"> 
+      <form id="my-form">
+        <input type="text" id="txtStudentID" name="txtStudentID" placeholder="รหัสนิสิต" />
+        <br/>
+        <input type="text" id="txtName" name="txtName" placeholder="ชื่อ-นามสกุล" />
+        <br/>
+        <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
+        <br/>
+        <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
+        <br/>
+        <input type="button" id="btnSubmit" value="Submit"/>
+      </form> 
+
+    </div>
+    <div id="tabs-2">
+      <button class="ui-button ui-widget ui-corner-all" id="btnRequest">Load</button>
+      <div id="myDynamicTable"></div>
+    </div>
+    <div id="tabs-3">
+
+      <div class="flex justify-center">
+        <div class="rounded-lg shadow-lg bg-white max-w-sm" id="data">
+          <a href="#!">
+            <img class="rounded-t-lg" src="./images/giphy.gif" alt=""/>
+          </a>
+          <div class="p-6">
+            <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-name" style="text-align: center ;">Name: </h5>
+            <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-studentID" style="text-align: center;">Student ID: </h5>
+            <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-gpa" style="text-align: center;">GPA: </h5>
+            <h5 class="text-gray-900 text-xl font-medium mb-2" id="data-position" style="text-align: center;">Position: </h5>
+          </div>
+        </div>
+      </div>
+
     
-      var col4 = document.createElement('TD');
-      trHead.appendChild(col4);
-      col4.appendChild(document.createTextNode("gpa"));
-    
-      var col5 = document.createElement('TD');
-      //col5.width = '50px';
-      trHead.appendChild(col5);
-      col5.appendChild(document.createTextNode("อาชีพในอนาคต"));
-  
-      var col6 = document.createElement('TD');
-      trHead.appendChild(col6);
-      col6.appendChild(document.createTextNode("รายละเอียด"));
-      
-      var tableBody = document.createElement('TBODY');
-      table.appendChild(tableBody);
-  
-      for (var i = 0; i < items.length; i++) {
-      var tr = document.createElement('TR');
-      //$(tr);
-      tableBody.appendChild(tr);
-        
-      var color;
-      if(i%2==0){
-        color="#F1E2E2"; // result%2 != 0
-      }else{
-         color="#DDD3B3";
-      }
-      idItem=(i+1);
-      //--------cell 1
-      tr.id=idItem;
-        
-      tr.setAttribute("onmouseover","ChangeBackgroundColor(this)");
-      tr.setAttribute("onmouseout","RestoreBackgroundColor(this,'"+color+"')");
-      tr.setAttribute("style","background-color:"+color+";");
-  
-      for (var j = 0; j < 6; j++) {
-        
-        //td.width = '75';
-        if(j==0){
-          var cell1 = document.createElement('TD');
-          //td.width = '25px';
-          //$(td).attr('id',i++);
-          //td.setAttribute("width", "25px");
-          cell1.setAttribute("width","20px");
-          cell1.setAttribute("align","center");
-          cell1.appendChild(document.createTextNode("" + (i+1) ));
-          tr.appendChild(cell1);
-        }else if(j==1){
-          //status
-          var cell2 = document.createElement('TD');
-          cell2.appendChild(document.createTextNode(items[i].student_id));
-          tr.appendChild(cell2);
-          //tr.appendChild(td);
-          
-        }else if(j==2){
-          //number_bill
-          var cell3 = document.createElement('TD');
-          cell3.appendChild(document.createTextNode(items[i].fullname));
-          tr.appendChild(cell3);
-          //tr.appendChild(td);
-        }else if(j==3){
-          //work_Code
-          var cell4 = document.createElement('TD');
-          cell4.appendChild(document.createTextNode(items[i].gpa));
-          tr.appendChild(cell4);
-          //tr.appendChild(td);
-        }else if(j==4){
-          //date
-          var cell5 = document.createElement('TD');
-          cell5.appendChild(document.createTextNode(items[i].position));
-          tr.appendChild(cell5);
-          //tr.appendChild(td);
-        }else if(j==5){
-          //department
-          //btn
-          var cell5 = document.createElement('TD');
-          //cell8.appendChild(document.createTextNode("tt"));
-          cell5.setAttribute("align","center");
-          cell5.setAttribute("width","20px");
-          
-          var elementButtonSave = document.createElement("input");
-          elementButtonSave.type = "button";
-          elementButtonSave.id = "btnConfirm"+idItem;
-          elementButtonSave.value = "รายละเอียด";
-        //elementStartDate.setAttribute("width","80");
-         // elementButtonSave.setAttribute("style","width:50px;");
-          //elementButtonSave.setAttribute("class","tealA400");
-          
-         
-          elementButtonSave.setAttribute("onclick","popupConfirm('"+items[i].fullname+"',this)");
-          
-  
-          cell5.appendChild(elementButtonSave);
-          
-          
-          tr.appendChild(cell5);
-          //tr.appendChild(td);
-        }
-      }
-      }
-      myTableDiv.appendChild(table);
-    }
-  
-    function popupConfirm(fullname,objElement){
-      alert(fullname);
-    }
-       //btnSubmit
-       $('#btnSubmit').click( function(){
+    </div>
+</div><!-- tabs-->
+<script type="text/javascript">
+  $(document).ready(function () {
+     console.log("Onload");
+
+     $("#tabs").tabs({
+         activate: function(event, ui) {
+             var tabIndex = $("#tabs").tabs("option", "active");
+             //console.log(tabIndex);
+             if (tabIndex == 0) {
+                 console.log("tabs-1");
+             }else if(tabIndex == 1){
+                 console.log("tabs-2");
+             }else if(tabIndex == 2){
+                 console.log("tabs-3");
+             }
+         }
+     });
+
+     //btnRequest
+     $('#btnRequest').click( function(){
+       // url from where we want to get the data
+       $.ajax({
+         method: "GET",
+         url: "https://tools.ecpe.nu.ac.th/network/api/students",
+         dataType : 'json',
+         headers: { 
+           'Content-Type': 'application/json',
+           "Accepts": "application/json",
+           "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjYxNzcwMTIwLCJleHAiOjE2NjE3NzM3MjAsIm5iZiI6MTY2MTc3MDEyMCwianRpIjoiNVBjeWxtbXM5czc0SXV5SSIsInN1YiI6OCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.ZBpvb6cG3dLFv7TNzSCQTXLqx_4DwINeo2jshccbe_4",
+         },
+         success: function(data){
+           console.log(data);
+           var tbName ="myDynamicTable";
+           addTable(data,tbName);
+
+           //alert("Done");
+         }
+       });
+     });
+     //btnSubmit
+     $('#btnSubmit').click( function(){
           //console.log("Submit");
           $.ajax({
             method: "POST",
@@ -246,5 +123,188 @@
           });
 
         });
-  </script>
+  });
+</script>
+
+<script type="text/javascript">
+
+  var TableBackgroundMouseoverColor = "#b8663d";
+        function ChangeBackgroundColor(row) { row.style.backgroundColor = TableBackgroundMouseoverColor; }
+        function RestoreBackgroundColor(row,color_me) { row.style.backgroundColor = color_me; }
+
+  function addTable(items,tb_name) {
+                  
+    console.log("addTable"+items.length);
+    var myTableDiv = document.getElementById(tb_name);
+
+    var table = document.createElement('TABLE');
+    table.border = '1';
+    //table.setAttribute("class", "table table-striped");
+
+    var tableHead = document.createElement('THEAD');
+    table.appendChild(tableHead);
+    
+    var trHead = document.createElement('TR');
+    trHead.setAttribute("style","background-color:#4e4cba;color: white;text-align: center;");
+    
+    tableHead.appendChild(trHead);
+    
+    var col1 = document.createElement('TD');
+    //col1.width = '25px';
+    col1.setAttribute("width","20px");
+    trHead.appendChild(col1);
+    col1.appendChild(document.createTextNode("No"));
+    
+    var col2 = document.createElement('TD');
+    trHead.appendChild(col2);
+    col2.appendChild(document.createTextNode("รหัสนิสิต"));
+    
+    var col3 = document.createElement('TD');
+    trHead.appendChild(col3);
+    col3.appendChild(document.createTextNode("ชื่อ-นามสกุล"));
+  
+    var col4 = document.createElement('TD');
+    trHead.appendChild(col4);
+    col4.appendChild(document.createTextNode("gpa"));
+  
+    var col5 = document.createElement('TD');
+    //col5.width = '50px';
+    trHead.appendChild(col5);
+    col5.appendChild(document.createTextNode("อาชีพในอนาคต"));
+
+    var col6 = document.createElement('TD');
+    trHead.appendChild(col6);
+    col6.appendChild(document.createTextNode("รายละเอียด"));
+    
+    var tableBody = document.createElement('TBODY');
+    table.appendChild(tableBody);
+
+    for (var i = 0; i < items.length; i++) {
+    var tr = document.createElement('TR');
+    //$(tr);
+    tableBody.appendChild(tr);
+      
+    var color;
+    if(i%2==0){
+      color="#F1E2E2"; // result%2 != 0
+    }else{
+       color="#DDD3B3";
+    }
+    idItem=(i+1);
+    //--------cell 1
+    tr.id=idItem;
+      
+    tr.setAttribute("onmouseover","ChangeBackgroundColor(this)");
+    tr.setAttribute("onmouseout","RestoreBackgroundColor(this,'"+color+"')");
+    tr.setAttribute("style","background-color:"+color+";");
+
+    for (var j = 0; j < 6; j++) {
+      
+      //td.width = '75';
+      if(j==0){
+        var cell1 = document.createElement('TD');
+        //td.width = '25px';
+        //$(td).attr('id',i++);
+        //td.setAttribute("width", "25px");
+        cell1.setAttribute("width","20px");
+        cell1.setAttribute("align","center");
+        cell1.appendChild(document.createTextNode("" + (i+1) ));
+        tr.appendChild(cell1);
+      }else if(j==1){
+        //status
+        var cell2 = document.createElement('TD');
+        cell2.appendChild(document.createTextNode(items[i].student_id));
+        tr.appendChild(cell2);
+        //tr.appendChild(td);
+        
+      }else if(j==2){
+        //number_bill
+        var cell3 = document.createElement('TD');
+        cell3.appendChild(document.createTextNode(items[i].fullname));
+        tr.appendChild(cell3);
+        //tr.appendChild(td);
+      }else if(j==3){
+        //work_Code
+        var cell4 = document.createElement('TD');
+        cell4.appendChild(document.createTextNode(items[i].gpa));
+        tr.appendChild(cell4);
+        //tr.appendChild(td);
+      }else if(j==4){
+        //date
+        var cell5 = document.createElement('TD');
+        cell5.appendChild(document.createTextNode(items[i].position));
+        tr.appendChild(cell5);
+        //tr.appendChild(td);
+      }else if(j==5){
+        //department
+        //btn
+        var cell5 = document.createElement('TD');
+        //cell8.appendChild(document.createTextNode("tt"));
+        cell5.setAttribute("align","center");
+        cell5.setAttribute("width","20px");
+        
+        var elementButtonSave = document.createElement("input");
+        elementButtonSave.type = "button";
+        elementButtonSave.id = "btnConfirm"+idItem;
+        elementButtonSave.value = "รายละเอียด";
+      //elementStartDate.setAttribute("width","80");
+       // elementButtonSave.setAttribute("style","width:50px;");
+        //elementButtonSave.setAttribute("class","tealA400");
+        
+       
+        elementButtonSave.setAttribute("onclick","confirmAlert('"+items[i].student_id+"',this)",);
+        
+        cell5.appendChild(elementButtonSave);
+      
+        tr.appendChild(cell5);
+        //tr.appendChild(td);
+      }
+    }
+    }
+    myTableDiv.appendChild(table);
+  }
+
+  function  confirmAlert(id){
+    //console.log(id)
+     
+Swal.fire({
+  title: 'info',
+  text: "click confirm to view more information",
+  icon: 'info',
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Confirm'
+}).then((result) => {
+  if (result.isConfirmed) {
+  }
+  $("#tabs").tabs("option","active",2)
+})
+          $.ajax({
+            method: "GET",
+            url: "https://tools.ecpe.nu.ac.th/network/api/student/"+id,
+            dataType : 'json',
+            headers: { 
+              'Content-Type': 'application/json',
+              "Accepts": "application/json",
+              "Authorization": `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90b29scy5lY3BlLm51LmFjLnRoXC9uZXR3b3JrXC9hcGlcL2xvZ2luIiwiaWF0IjoxNjYxNzcwMTIwLCJleHAiOjE2NjE3NzM3MjAsIm5iZiI6MTY2MTc3MDEyMCwianRpIjoiNVBjeWxtbXM5czc0SXV5SSIsInN1YiI6OCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.ZBpvb6cG3dLFv7TNzSCQTXLqx_4DwINeo2jshccbe_4`
+            },
+            success: function(data){
+              console.log(data);
+              document.getElementById("data-name").innerHTML = "Name: "+data[0].fullname;
+              document.getElementById("data-studentID").innerHTML = "Student_id: "+data[0].student_id;
+              document.getElementById("data-gpa").innerHTML = "GPA: "+data[0].gpa;
+              document.getElementById("data-position").innerHTML = "Position: "+data[0].position;
+            }
+          });
+
+        
+
+
+}
+</script>
+
+
+
+
+</body>
 </html>

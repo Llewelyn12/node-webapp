@@ -1,35 +1,48 @@
-<!--login.html-->
-
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Login Page</title>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    
     <!--CSS-->
     <link rel="stylesheet" href="/jquery-ui/themes/base/jquery-ui.css">
 
     <!--Javascript-->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/jquery-ui/jquery-ui.min.js"></script>
-</head>
-<body>
-    <div id="tabs">
-        <ul>
-          <h3>Login</h3>
-        </ul>
-        <div id="tabs-1"> 
-            <form id="my-form">
-                <input type="text" id="txtEmail" name="txtEmail" placeholder="Email" />
-                <br/>
-                <input type="password" id="txtPassword" name="txtPassword" placeholder="รหัสผ่าน" />
-                <br/>
-                <input type="button" id="btnSubmit" value="Submit"/>
-            </form>
+  </head>
+
+  <body>
+    <section id="CreateAccount" style="text-align: center">
+      <div class="title">
+        <div class="text-title">Log in</div>
+        <span class="emoji" style="font-size: 30px">&#128273;</span>
+
+        <div class="inp">
+            <input
+              type="text"
+              id="inpUSN"
+              placeholder="Username"
+              style="text-align: center"
+            />
+          </div>
         </div>
-        
+        <div class="inp">
+          <div class="inp-text">
+            <input
+              type="password"
+              id="inpPWD"
+              placeholder="Password"
+              style="text-align: center"
+            />
+          </div>
+          <input type="button" id="btnSubmit" value="Login" style="margin-top: 5px";/>
         </div>
-    </div>
+    </section>
+
+
     <script type="text/javascript">
         //btnSubmit
         $('#btnSubmit').click( function(){
@@ -41,7 +54,7 @@
               'Content-Type': 'application/json',
               "Accepts": "application/json",
             },
-            data:JSON.stringify( {"email": $('#txtEmail').val(), "password": $('#txtPassword').val() } ),
+            data:JSON.stringify( {"email": $('#inpUSN').val(), "password": $('#inpPWD').val() } ),
             success: function(data){
               console.log(data);
             }
@@ -50,7 +63,5 @@
         });
 
    </script>
-</body>
+  </body>
 </html>
-
-
